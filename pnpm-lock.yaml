@@ -92,9 +92,6 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.2.8
         version: 1.2.8(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      '@tanstack/react-query':
-        specifier: ^5.40.0
-        version: 5.100.8(react@19.2.5)
       '@types/lodash':
         specifier: ^4.17.24
         version: 4.17.24
@@ -128,6 +125,9 @@ importers:
       next-themes:
         specifier: ^0.2.1
         version: 0.2.1(next@16.2.4(@babel/core@7.29.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      pnpm:
+        specifier: ^10.33.2
+        version: 10.33.3
       react:
         specifier: ^19.1.0
         version: 19.2.5
@@ -164,9 +164,6 @@ importers:
       wouter:
         specifier: ^3.3.5
         version: 3.9.0(react@19.2.5)
-      zod:
-        specifier: ^3.25.8
-        version: 3.25.76
     devDependencies:
       '@types/node':
         specifier: ^22.0.0
@@ -1520,14 +1517,6 @@ packages:
     resolution: {integrity: sha512-r5bClKrcIusDoo049dSL8CawnHR6mRdDwhlQuIgZRNty68q0x8k3Lf1BtPAMxRf/GgnHBnIO4ujd3+GQdLWzxQ==}
     engines: {node: '>=16.0.0'}
 
-  '@tanstack/query-core@5.100.8':
-    resolution: {integrity: sha512-ceYwSFOqjPwET5TA6IOYxzxlGc0ekyH/gfOtWkP0PX43rzX9bxW48Iuw8KAduKCToi4rJAQ6nRy2kAe8gszdmg==}
-
-  '@tanstack/react-query@5.100.8':
-    resolution: {integrity: sha512-iNNEekixXU5vtAGKKZX2lx3jTooG5yNY+kv0wSgEdEYG0Mj0JM5bcuQtC35ZAP3nDopT6jciUK3xeX65U7AnfA==}
-    peerDependencies:
-      react: ^18 || ^19
-
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
 
@@ -2023,6 +2012,11 @@ packages:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
     engines: {node: '>= 6'}
 
+  pnpm@10.33.3:
+    resolution: {integrity: sha512-oZdENkp+JIuSZXpMpZc/k1TSHK+YJXlnSxxTnzLHQgxHE4rYsSVN8Hq6m8eC2bMCnj2zTV2/+XQybrdNrI/0iQ==}
+    engines: {node: '>=18.12'}
+    hasBin: true
+
   postcss-import@15.1.0:
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
@@ -2395,9 +2389,6 @@ packages:
 
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
-
-  zod@3.25.76:
-    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
 snapshots:
 
@@ -3563,13 +3554,6 @@ snapshots:
 
   '@tabby_ai/hijri-converter@1.0.5': {}
 
-  '@tanstack/query-core@5.100.8': {}
-
-  '@tanstack/react-query@5.100.8(react@19.2.5)':
-    dependencies:
-      '@tanstack/query-core': 5.100.8
-      react: 19.2.5
-
   '@types/babel__core@7.20.5':
     dependencies:
       '@babel/parser': 7.29.3
@@ -4020,6 +4004,8 @@ snapshots:
 
   pirates@4.0.7: {}
 
+  pnpm@10.33.3: {}
+
   postcss-import@15.1.0(postcss@8.5.13):
     dependencies:
       postcss: 8.5.13
@@ -4433,5 +4419,3 @@ snapshots:
       use-sync-external-store: 1.6.0(react@19.2.5)
 
   yallist@3.1.1: {}
-
-  zod@3.25.76: {}

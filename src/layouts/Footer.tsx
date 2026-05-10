@@ -27,13 +27,13 @@ export function Footer() {
   ];
 
   return (
-     <footer
-      className="bg-background border-t border-border/50 pt-20 pb-10"
+    <footer
+      className="bg-background border-t border-border/50 pt-20 pb-10 min-h-[300px]"
       role="contentinfo"
     >
       <div className="relative">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent pointer-events-none" />
-        
+
         <div className="container mx-auto px-4 md:px-8 relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
             <div className="lg:col-span-5 flex flex-col">

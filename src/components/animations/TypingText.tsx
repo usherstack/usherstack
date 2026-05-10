@@ -61,8 +61,8 @@ export function TypingText({
     <span className={className}>
       {displayText}
 
-      {/* Cursor */}
-      <span className="animate-pulse ml-1">|</span>
+      {/* Cursor (CLS-safe: reserve stable width) */}
+      <span className="ml-1 inline-block w-[10px] animate-pulse">|</span>
     </span>
   );
 }

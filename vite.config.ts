@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
       target: "es2020",
       cssCodeSplit: true,
       emptyOutDir: true,
-       chunkSizeWarningLimit: 1000,
+      chunkSizeWarningLimit: 1000,
 
       terserOptions: {
         compress: {
@@ -47,21 +47,15 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks: {
-            "vendor-react": ["react", "react-dom"],
-            "vendor-ui": [
-              "@radix-ui/react-dialog",
-              "@radix-ui/react-dropdown-menu",
-              "@radix-ui/react-tooltip",
-              "class-variance-authority",
-              "tailwind-merge",
-            ],
-            "vendor-animation": ["framer-motion"],
+            vendor: ["react", "react-dom"],
+            motion: ["framer-motion"],
           },
           chunkFileNames: "assets/js/[name]-[hash].js",
           entryFileNames: "assets/js/[name]-[hash].js",
           assetFileNames: ({ name }) => {
             const extType = name?.split(".").pop();
-            if (/css/i.test(extType || "")) return "assets/css/[name]-[hash][extname]";
+            if (/css/i.test(extType || ""))
+              return "assets/css/[name]-[hash][extname]";
             if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType || ""))
               return "assets/images/[name]-[hash][extname]";
             return "assets/[ext]/[name]-[hash][extname]";

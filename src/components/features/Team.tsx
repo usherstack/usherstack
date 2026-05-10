@@ -33,9 +33,29 @@ export const Team: React.FC = () => {
 
   return (
     <section className="relative py-20 md:py-32 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+      {/* Background Elements (CLS-safe: fixed size + anchored transform) */}
+      <div
+        className="absolute rounded-full blur-3xl bg-blue-500/5 pointer-events-none"
+        style={{
+          width: "384px",
+          height: "384px",
+          left: "0%",
+          top: "0%",
+          transform: "translate(-50%, -50%)",
+          willChange: "transform",
+        }}
+      />
+      <div
+        className="absolute rounded-full blur-3xl bg-purple-500/5 pointer-events-none"
+        style={{
+          width: "384px",
+          height: "384px",
+          left: "100%",
+          top: "100%",
+          transform: "translate(-50%, -50%)",
+          willChange: "transform",
+        }}
+      />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         {/* Section Header */}

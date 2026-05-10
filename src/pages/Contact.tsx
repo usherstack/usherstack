@@ -1,7 +1,6 @@
 import { PageTransition } from "@/components/ui/PageTransition";
 import { motion } from "framer-motion";
 import { Mail, MapPin, MessageCircle, Calendar } from "lucide-react";
-import { FaInstagram, FaTelegram, FaTwitter, FaDiscord } from "react-icons/fa";
 import { CalendlyWidget } from "@/components/features/CalendlyWidget";
 
 export default function Contact() {
@@ -65,7 +64,7 @@ export default function Contact() {
 
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                    <FaTelegram className="w-6 h-6 text-primary" />
+                    <i className="w-6 h-6 mdi:telegram text-primary [&>i]:scale-110" />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-foreground mb-1">
@@ -84,7 +83,7 @@ export default function Contact() {
 
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                    <FaTwitter className="w-6 h-6 text-primary" />
+                    <i className="w-6 h-6 mdi:twitter text-primary" />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-foreground mb-1">
@@ -103,7 +102,7 @@ export default function Contact() {
 
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                    <FaDiscord className="w-6 h-6 text-primary" />
+                    <i className="w-6 h-6 mdi:messages text-primary" />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-foreground mb-1">
@@ -122,7 +121,7 @@ export default function Contact() {
 
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                    <FaInstagram className="w-6 h-6 text-primary" />
+                    <i className="w-6 h-6 mdi:instagram text-primary" />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-foreground mb-1">

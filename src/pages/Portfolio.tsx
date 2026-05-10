@@ -9,18 +9,10 @@ const categories = ["All", "Web", "App", "Design", "AI", "Marketing"];
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [activeSubcategory, setActiveSubcategory] = useState<
-    string | undefined
-  >(undefined);
+  const { projects: filteredProjects } = useProjectsByCategory(activeCategory);
 
-  const { projects: filteredProjects } = useProjectsByCategory(
-    activeCategory,
-    activeSubcategory
-  );
-
-  const handleFilterChange = (category: string, subcategory?: string) => {
+  const handleFilterChange = (category: string) => {
     setActiveCategory(category);
-    setActiveSubcategory(subcategory);
   };
 
   return (
@@ -48,12 +40,11 @@ export default function Portfolio() {
           <FilterBar
             categories={categories}
             activeCategory={activeCategory}
-            activeSubcategory={activeSubcategory}
             onSelect={handleFilterChange}
           />
 
           <motion.div
-            key={`${activeCategory}-${activeSubcategory}`}
+            key={`${activeCategory}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}

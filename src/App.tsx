@@ -12,7 +12,7 @@ import { useScrollRestore } from "@/hooks/useScrollRestore";
 const DynamicChatbot = lazy(() =>
   import("@/components/features/DynamicChatbot").then((module) => ({
     default: module.DynamicChatbot,
-  }))
+  })),
 );
 
 const Home = lazy(() => import("@/pages/Home"));
@@ -29,7 +29,7 @@ function Router() {
   const [location] = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="sync">
       <Suspense
         fallback={
           <div className="min-h-[70vh] flex items-center justify-center text-sm text-muted-foreground">
@@ -58,10 +58,10 @@ function App() {
   useScrollRestore();
 
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="dark"
-      disableTransitionOnChange
+<ThemeProvider
+        attribute="class"
+        forcedTheme="dark"
+        disableTransitionOnChange
     >
       <TooltipProvider>
         <div className="flex flex-col min-h-screen relative selection:bg-primary/30 selection:text-primary-foreground">

@@ -9,6 +9,7 @@ import { services, testimonials, projects } from "@/data/data";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import { AnimatedGradient } from "@/components/animations/AnimatedGradient";
 
 export default function Home() {
   const featuredProjects = projects.slice(0, 4);
@@ -48,6 +49,8 @@ export default function Home() {
 
       {/* Featured Work */}
       <section className="py-24 md:py-32 bg-secondary/30 relative">
+        {" "}
+        <AnimatedGradient />
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground mb-4">
@@ -68,7 +71,6 @@ export default function Home() {
                 <ProjectCard
                   key={project.id}
                   project={project}
-                  index={index}
                   featured={index === 0}
                 />
               ))
@@ -93,7 +95,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground">
-              Client Feedback
+              Our Team, Our Promisses
             </h2>
           </div>
           <TestimonialsSlider testimonials={testimonials} />

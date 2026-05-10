@@ -5,27 +5,124 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="USHER - Creative Agency specializing in full-stack web development, mobile apps, AI integration, and digital marketing. Transform your vision into reality." />
+        content="USHER - Creative Agency specializing in full-stack web development, mobile apps, AI integration, and digital marketing. Transform your vision into reality with cutting-edge technical solutions." />
     <meta name="keywords"
-        content="web development, mobile app development, AI integration, digital marketing, creative agency" />
+        content="web development, mobile app development, AI integration, digital marketing, creative agency, software engineering, UI/UX design" />
     <meta name="author" content="USHER Creative Agency" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Open Graph -->
     <meta property="og:title" content="USHER - Technical Excellence & Creative Vision" />
     <meta property="og:description"
         content="We engineer full-stack solutions that push boundaries. From highly concurrent backends to stunning cinematic interfaces." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://usher.agency" />
+    <meta property="og:image" content="https://usher.agency/og-image.jpg" />
+    <meta property="og:site_name" content="USHER Creative Agency" />
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="USHER Creative Agency" />
     <meta name="twitter:description" content="Technical Excellence & Creative Vision" />
-    <title>USHER - Creative Agency | Web Development & AI Integration</title>
+    <meta name="twitter:image" content="https://usher.agency/twitter-card.jpg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://usher.agency" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Preconnect for critical third-party origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin crossorigin />
+    <link rel="preconnect" href="https://assets.calendly.com" crossorigin />
+    <link rel="dns-prefetch" href="https://assets.calendly.com" />
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/usher-logo-72.webp" as="image"
+        imagesrcset="/usher-logo-48.webp 48w, /usher-logo-72.webp 72w, /usher-logo-96.webp 96w"
+        imagesizes="(max-width: 768px) 48px, 72px" />
+
+    <!-- Preload critical fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"
+        media="print" onload="this.media='all'" />
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet" />
+    </noscript>
+
+    <!-- Preload critical CSS -->
+    <style>
+        /* Critical CSS for above-the-fold content */
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --primary: 221.2 83.2% 53.3%;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background: 222.2 84% 4.9%;
+                --foreground: 210 40% 96%;
+            }
+        }
+
+        /* Prevent FOUC */
+        * {
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        .font-inter {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        /* Hide content until fonts load */
+        .wf-loading {
+            opacity: 0;
+        }
+
+        .wf-active {
+            opacity: 1;
+            transition: opacity 0.2s ease-in;
+        }
+    </style>
+
+    <title>USHER - Creative Agency | Web Development & AI Integration</title>
 </head>
 
 <body>
-    <div id="root"></div>
+     <div id="root" class="font-inter wf-active"></div>
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "USHER Creative Agency",
+        "url": "https://usher.agency",
+        "logo": "https://usher.agency/usher-logo.webp",
+        "description": "Creative agency specializing in full-stack web development, mobile apps, AI integration, and digital marketing",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lucknow",
+            "addressRegion": "Uttar Pradesh",
+            "addressCountry": "IN"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-8948552234",
+            "contactType": "customer service",
+            "email": "info.usherstack@gmail.com"
+        },
+        "sameAs": [
+            "https://linkedin.com/company/usr-pixelwork/",
+            "https://twitter.com",
+            "https://youtube.com/@usherinc-h5p",
+            "https://instagram.com/usher.tech"
+        ]
+    }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
 </body>
 

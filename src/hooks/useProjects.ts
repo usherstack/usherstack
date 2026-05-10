@@ -33,16 +33,11 @@ export function useProject(projectId: string) {
  */
 export function useProjectsByCategory(
   category: string,
-  subcategory?: string,
 ): UseProjectsReturn {
   let filtered = localProjects as Project[];
 
   if (category && category !== "All") {
     filtered = filtered.filter((p) => p.category === category);
-  }
-
-  if (subcategory) {
-    filtered = filtered.filter((p) => p.subcategory === subcategory);
   }
 
   return {

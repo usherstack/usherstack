@@ -55,22 +55,25 @@ export const ProjectCard = React.memo(function ProjectCard({
         </p>
 
         {/* Action Buttons - appear on hover */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-background/40 backdrop-blur-sm gap-4">
-          {project.liveUrl && (
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-background/40 backdrop-blur-sm gap-4" aria-hidden="false">
+          {project.link && (
             <a
-              href={project.liveUrl}
+              href={project.link}
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-full bg-white/10 hover:bg-primary/20 border border-white/20 hover:border-primary/50 flex items-center justify-center backdrop-blur-md transition-all hover:scale-110"
               title="Live Preview"
+              aria-label={`View live preview of ${project.title}`}
             >
-              <Eye className="w-5 h-5 text-white" />
+              <Eye className="w-5 h-5 text-white" aria-hidden="true" />
             </a>
           )}
-          <Link href={`/portfolio/${project.id}`}>
-            <div className="w-12 h-12 rounded-full bg-white/10 hover:bg-accent/20 border border-white/20 hover:border-accent/50 flex items-center justify-center backdrop-blur-md transition-all hover:scale-110 cursor-pointer">
-              <ArrowUpRight className="w-5 h-5 text-white" />
-            </div>
+          <Link
+            href={`/portfolio/${project.id}`}
+            className="w-12 h-12 rounded-full bg-white/10 hover:bg-accent/20 border border-white/20 hover:border-accent/50 flex items-center justify-center backdrop-blur-md transition-all hover:scale-110 cursor-pointer"
+            aria-label={`View details of ${project.title} project`}
+          >
+            <ArrowUpRight className="w-5 h-5 text-white" aria-hidden="true" />
           </Link>
         </div>
       </div>

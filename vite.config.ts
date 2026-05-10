@@ -14,20 +14,35 @@ export default defineConfig(({ mode }) => {
       },
     },
 
-    // Dev-only server config (safe for local + Render preview, ignored in production serving)
     server: {
-      host: true, // allows external access
+      host: true,
       port: Number(process.env.PORT) || 5173,
       open: isDev,
       cors: true,
-      // optional: only needed if you STILL run dev on Render (not recommended)
-      allowedHosts: [".onrender.com"],
     },
 
     build: {
       outDir: "dist",
       sourcemap: isDev,
       minify: "terser",
+      target: "es2020",
+      cssCodeSplit: true,
+      emptyOutDir: true,
+       chunkSizeWarningLimit: 1000,
+
+      terserOptions: {
+        compress: {
+          drop_console: !isDev,
+          drop_debugger: true,
+          passes: 2,
+        },
+        format: {
+          comments: false,
+        },
+        mangle: {
+          toplevel: true,
+        },
+      },
 
       rollupOptions: {
         output: {
@@ -36,9 +51,20 @@ export default defineConfig(({ mode }) => {
             "vendor-ui": [
               "@radix-ui/react-dialog",
               "@radix-ui/react-dropdown-menu",
-              "@radix-ui/react-tabs",
+              "@radix-ui/react-tooltip",
+              "class-variance-authority",
+              "tailwind-merge",
             ],
-            "vendor-motion": ["framer-motion"],
+            "vendor-animation": ["framer-motion"],
+          },
+          chunkFileNames: "assets/js/[name]-[hash].js",
+          entryFileNames: "assets/js/[name]-[hash].js",
+          assetFileNames: ({ name }) => {
+            const extType = name?.split(".").pop();
+            if (/css/i.test(extType || "")) return "assets/css/[name]-[hash][extname]";
+            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType || ""))
+              return "assets/images/[name]-[hash][extname]";
+            return "assets/[ext]/[name]-[hash][extname]";
           },
         },
       },

@@ -1,85 +1,69 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
-interface TypingTextProps {
-  phrases: string[];
-  typingSpeed?: number;
-  deletingSpeed?: number;
-  pauseDuration?: number;
-  className?: string;
-}
+import React, { useEffect, useState } from "react";
 
 export function TypingText({
-  phrases,
-  typingSpeed = 60,
-  deletingSpeed = 40,
-  pauseDuration = 3500,
+  phrases = [],
+  typingSpeed = 100,
+  deletingSpeed = 50,
+  pauseTime = 1500,
   className = "",
-}: TypingTextProps) {
-  const [text, setText] = useState("");
-  const [phraseIndex, setPhraseIndex] = useState(0);
+}) {
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const [displayKey, setDisplayKey] = useState(0);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    if (!phrases.length) return;
 
-    const currentPhrase = phrases[phraseIndex];
+    const currentPhrase = phrases[currentPhraseIndex];
 
-    if (isDeleting) {
-      setText((prev) => currentPhrase.substring(0, prev.length - 1));
-      timer = setTimeout(() => {
-        if (text === "") {
-          setIsDeleting(false);
-          setPhraseIndex((prev) => (prev + 1) % phrases.length);
-          setDisplayKey((prev) => prev + 1);
-        }
-      }, deletingSpeed);
-    } else {
-      setText((prev) => currentPhrase.substring(0, prev.length + 1));
-      timer = setTimeout(() => {
-        if (text === currentPhrase) {
-          timer = setTimeout(() => setIsDeleting(true), pauseDuration);
-        }
-      }, typingSpeed);
+    let timeout;
+
+    // Typing
+    if (!isDeleting) {
+      if (displayText.length < currentPhrase.length) {
+        timeout = setTimeout(() => {
+          setDisplayText(currentPhrase.substring(0, displayText.length + 1));
+        }, typingSpeed);
+      } else {
+        // Pause before deleting
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, pauseTime);
+      }
     }
 
-    return () => clearTimeout(timer);
+    // Deleting
+    else {
+      if (displayText.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayText(currentPhrase.substring(0, displayText.length - 1));
+        }, deletingSpeed);
+      } else {
+        setIsDeleting(false);
+
+        // Next phrase
+        setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+      }
+    }
+
+    return () => clearTimeout(timeout);
   }, [
-    text,
+    displayText,
     isDeleting,
-    phraseIndex,
+    currentPhraseIndex,
     phrases,
     typingSpeed,
     deletingSpeed,
-    pauseDuration,
+    pauseTime,
   ]);
 
   return (
-    <div className={`inline-block relative ${className}`}>
-      <motion.span
-        key={displayKey}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="inline-block bg-gradient-to-r from-primary via-blue-400 to-purple-400 bg-clip-text text-transparent font-bold"
-      >
-        {text}
-      </motion.span>
+    <span className={className}>
+      {displayText}
 
-      {/* Enhanced cursor with animation */}
-      <motion.span
-        animate={{
-          opacity: [1, 0.3],
-          boxShadow: [
-            "0 0 8px rgba(var(--primary-rgb), 0.6)",
-            "0 0 16px rgba(var(--primary-rgb), 0.3)",
-          ],
-        }}
-        transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
-        className="inline-block w-1.5 h-1em bg-gradient-to-b from-primary to-primary/50 ml-1 align-middle rounded-full"
-      />
-    </div>
+      {/* Cursor */}
+      <span className="animate-pulse ml-1">|</span>
+    </span>
   );
 }
+export default TypingText;

@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
 import type { TeamMember } from "@/data/teamData";
 
 interface TeamCardProps {
@@ -8,7 +7,10 @@ interface TeamCardProps {
   index: number;
 }
 
-export const TeamCard = React.memo(function TeamCard({ member, index }: TeamCardProps) {
+export const TeamCard = React.memo(function TeamCard({
+  member,
+  index,
+}: TeamCardProps) {
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
@@ -21,6 +23,8 @@ export const TeamCard = React.memo(function TeamCard({ member, index }: TeamCard
       },
     }),
   };
+
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <motion.div
@@ -37,11 +41,26 @@ export const TeamCard = React.memo(function TeamCard({ member, index }: TeamCard
 
         <div className="relative z-10">
           {/* Image Container */}
-          <div className="relative mb-6 overflow-hidden rounded-xl h-52 md:h-64">
+          <div className="relative mb-6 overflow-hidden rounded-xl h-52 md:h-64 bg-slate-800">
+            <div
+              className={`absolute inset-0 transition-opacity duration-500 ${
+                imageLoaded ? "opacity-0" : "opacity-100"
+              }`}
+              aria-hidden="true"
+            >
+              <div className="w-full h-full bg-gradient-to-br from-slate-700 to-slate-900 animate-pulse" />
+            </div>
             <img
               src={member.image}
               alt={member.name}
-              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+              className={`w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ${
+                imageLoaded ? "opacity-100" : "opacity-0"
+              }`}
+              onLoad={() => setImageLoaded(true)}
+              loading="lazy"
+              decoding="async"
+              width={400}
+              height={300}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent" />
           </div>
@@ -78,10 +97,10 @@ export const TeamCard = React.memo(function TeamCard({ member, index }: TeamCard
                     href={member.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-slate-400 hover:text-blue-400 transition-colors duration-300"
-                    aria-label={member.name + "'s LinkedIn"}
+                    className="text-slate-400 hover:text-blue-400 transition-colors duration-300 [&>i]:group-hover:scale-110"
+                    aria-label={`${member.name}'s LinkedIn profile`}
                   >
-                    <FaLinkedin size={20} />
+                    <i className="w-5 h-5 mdi:linkedin text-slate-400 hover:text-blue-400" />
                   </a>
                 )}
                 {member.social.github && (
@@ -89,10 +108,10 @@ export const TeamCard = React.memo(function TeamCard({ member, index }: TeamCard
                     href={member.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-slate-400 hover:text-blue-400 transition-colors duration-300"
-                    aria-label={member.name + "'s GitHub"}
+                    className="text-slate-400 hover:text-blue-400 transition-colors duration-300 [&>i]:group-hover:scale-110"
+                    aria-label={`${member.name}'s GitHub profile`}
                   >
-                    <FaGithub size={20} />
+                    <i className="w-5 h-5 mdi:github text-slate-400 hover:text-blue-400" />
                   </a>
                 )}
               </div>

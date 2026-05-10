@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -39,7 +38,11 @@ export function Navbar() {
           <Link href="/">
             <div className="cursor-pointer flex items-center gap-2">
               <img
-                src={`${import.meta.env.BASE_URL}usher-logo.jpg`}
+                src={`${import.meta.env.BASE_URL}usher-logo-72.webp`}
+                srcSet={`${import.meta.env.BASE_URL}usher-logo-48.webp 48w, ${import.meta.env.BASE_URL}usher-logo-72.webp 72w, ${import.meta.env.BASE_URL}usher-logo-96.webp 96w`}
+                sizes="(max-width: 768px) 48px, 72px"
+                width={72}
+                height={48}
                 alt="USHER — IT Services & Consulting"
                 className="h-9 md:h-10 w-auto rounded-md object-contain"
               />
@@ -76,29 +79,32 @@ export function Navbar() {
                 </li>
               ))}
             </ul>
-            <div className="flex items-center gap-4 border-l border-border/50 pl-4">
-              <ThemeToggle />
-              <Link href="/contact">
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-full px-6">
-                  Get Started
-                </Button>
-              </Link>
-            </div>
-          </nav>
 
-          {/* Mobile Toggle */}
-          <div className="flex items-center gap-4 md:hidden">
-            <ThemeToggle />
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="text-foreground p-1"
-              aria-label="Open menu"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
+{
+                <a
+                  href="https://wa.me/918948552234?text=Hi%2C%20I%E2%80%99m%20looking%20for%20a%20custom%20website%20or%20IT%20solution%20for%20my%20business.%20Can%20we%20discuss%20my%20requirements%3F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-full px-6">
+                    Get Started
+                  </Button>
+                </a>
+              }
+            </nav>
+
+            {/* Mobile Toggle */}
+            <div className="flex items-center gap-4 md:hidden">
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className="text-foreground p-1"
+                aria-label="Open menu"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
 
       {/* Mobile Menu Drawer */}
       <AnimatePresence>
@@ -112,7 +118,11 @@ export function Navbar() {
             <div className="flex items-center justify-between p-4 px-4">
               <div className="flex items-center gap-2">
                 <img
-                  src={`${import.meta.env.BASE_URL}usher-logo.jpg`}
+                  src={`${import.meta.env.BASE_URL}usher-logo-72.webp`}
+                  srcSet={`${import.meta.env.BASE_URL}usher-logo-48.webp 48w, ${import.meta.env.BASE_URL}usher-logo-72.webp 72w, ${import.meta.env.BASE_URL}usher-logo-96.webp 96w`}
+                  sizes="(max-width: 768px) 48px, 72px"
+                  width={72}
+                  height={48}
                   alt="USHER"
                   className="h-9 w-auto rounded-md object-contain"
                 />

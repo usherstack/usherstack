@@ -46,8 +46,10 @@ const config: Config = {
     },
   },
   plugins: [],
-  // Production optimizations
-  safelist: [],
+  // Aggressive tree-shaking for production
+  corePlugins: {
+    preflight: true,
+  },
 };
 
 export default config;

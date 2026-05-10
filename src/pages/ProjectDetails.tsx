@@ -10,13 +10,14 @@ import {
   Code,
   ChevronLeft,
   ChevronRight,
+  GitBranch,
 } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 
 export default function ProjectDetails() {
-  const { id } = useParams();
+  const params = useParams();
+  const id = (params as any).id as string | undefined;
   const [, setLocation] = useLocation();
   const project = projects.find((p) => p.id === id);
 
@@ -212,7 +213,7 @@ export default function ProjectDetails() {
                         variant="outline"
                         className="w-full border-border/50 hover:bg-muted flex items-center gap-2 text-foreground"
                       >
-                        <FaGithub className="w-4 h-4" /> Source Code
+                        <GitBranch className="w-4 h-4" /> Source Code
                       </Button>
                     </a>
                   )}

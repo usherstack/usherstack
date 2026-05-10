@@ -9,11 +9,12 @@ import {
   Globe,
 } from "lucide-react";
 import React from "react";
+import PermissionRequired from "@/pages/Request";
 
 // Production Config - Update these for deployment
 export const config = {
   // Placeholder URL for demo projects - replace with actual domain in production
-  demoUrl: "https://usher.agency",
+  demoUrl: "/Request",
   // Calendly URL for booking - replace with your actual Calendly link
   calendlyUrl:
     "https://calendly.com/renutkarshbhargav?hide_landing_page_details=1&hide_gdpr_banner=1",
@@ -71,64 +72,10 @@ export const services: Service[] = [
   },
 ];
 
-// Category structure with sub-categories based on pricing catalog
-export type CategoryWithSubcategories = {
-  name: string;
-  subcategories: string[];
-};
-
-export const categoryStructure: Record<string, string[]> = {
-  All: [],
-  Web: [
-    "Custom Website",
-    "Static Website",
-    "Dynamic Website",
-    "E-commerce Website",
-    "CMS",
-    "Web Application",
-    "PWA",
-    "Landing Page",
-  ],
-  App: [
-    "Android App",
-    "iOS App",
-    "Cross-platform",
-    "Hybrid App",
-    "Custom App",
-    "API Integration",
-  ],
-  Design: [
-    "UI Design",
-    "UX Design",
-    "Wireframing",
-    "Prototyping",
-    "Logo Design",
-    "Social Media Assets",
-    "Branding",
-    "Dashboard Design",
-  ],
-  AI: [
-    "AI Chatbot",
-    "Data Dashboard",
-    "Real-time Apps",
-    "Microservices",
-    "Scalable Systems",
-  ],
-  Marketing: [
-    "Brand Strategy",
-    "Social Branding",
-    "Content Marketing",
-    "Ad Creatives",
-    "SEO",
-    "Visual Storytelling",
-  ],
-};
-
 export type Project = {
   id: string;
   title: string;
   category: "Web" | "App" | "Design" | "AI" | "Marketing";
-  subcategory?: string;
   image: string;
   description: string;
   problem: string;
@@ -144,8 +91,7 @@ export const projects: Project[] = [
     id: "nexus-finance",
     title: "Nexus Finance",
     category: "Web",
-    subcategory: "Web Application",
-    image: "/images/project1.png",
+    image: "/images/project.webp",
     description:
       "A decentralized finance dashboard with real-time trading metrics.",
     problem:
@@ -167,8 +113,7 @@ export const projects: Project[] = [
     id: "pulse-fitness",
     title: "Pulse Fitness Tracker",
     category: "App",
-    subcategory: "Cross-platform",
-    image: "/images/project2.png",
+    image: "/images/project.webp",
     description: "An AI-powered fitness app that adjusts workouts dynamically.",
     problem:
       "Users struggled to maintain workout routines without personal trainers.",
@@ -183,8 +128,7 @@ export const projects: Project[] = [
     id: "aethos-ai",
     title: "Aethos AI Platform",
     category: "AI",
-    subcategory: "AI Chatbot",
-    image: "/images/project3.png",
+    image: "/images/project.webp",
     description: "An enterprise AI platform for automated customer service.",
     problem: "Customer support costs were scaling linearly with user growth.",
     solution:
@@ -199,8 +143,7 @@ export const projects: Project[] = [
     id: "nova-commerce",
     title: "Nova E-Commerce",
     category: "Web",
-    subcategory: "E-commerce Website",
-    image: "/images/project4.png",
+    image: "/images/project.webp",
     description: "A headless e-commerce storefront for a luxury tech brand.",
     problem: "The client's monolithic CMS was slow and difficult to update.",
     solution:
@@ -219,8 +162,7 @@ export const projects: Project[] = [
     id: "synapse-analytics",
     title: "Synapse Data Analytics",
     category: "Web",
-    subcategory: "Web Application",
-    image: "/images/project5.png",
+    image: "/images/project.webp",
     description: "A powerful data visualization tool for enterprise teams.",
     problem: "Data analysts spent too much time building custom reports.",
     solution:
@@ -234,8 +176,7 @@ export const projects: Project[] = [
     id: "quantum-marketing",
     title: "Quantum SaaS Campaign",
     category: "Marketing",
-    subcategory: "SEO",
-    image: "/images/project6.png",
+    image: "/images/project.webp",
     description:
       "A comprehensive digital marketing campaign for a B2B SaaS startup.",
     problem: "The client had a great product but zero market visibility.",
@@ -249,8 +190,7 @@ export const projects: Project[] = [
     id: "horizon-branding",
     title: "Horizon Identity",
     category: "Design",
-    subcategory: "Branding",
-    image: "/images/project1.png",
+    image: "/images/project.webp",
     description: "A complete rebrand for an aerospace engineering firm.",
     problem:
       "The company's image felt dated and didn't reflect their cutting-edge work.",
@@ -265,8 +205,7 @@ export const projects: Project[] = [
     id: "omni-ai",
     title: "Omni Vision AI",
     category: "AI",
-    subcategory: "Real-time Apps",
-    image: "/images/project3.png",
+    image: "/images/project.webp",
     description:
       "Computer vision system for automated quality control in manufacturing.",
     problem: "Manual inspection was slow and prone to human error.",
@@ -279,41 +218,75 @@ export const projects: Project[] = [
   },
 ];
 
-export type Testimonial = {
-  id: string;
-  name: string;
-  role: string;
-  company: string;
-  content: string;
-  avatar: string;
-};
+import { Testimonial } from "@/types";
 
 export const testimonials: Testimonial[] = [
   {
     id: "t1",
-    name: "Sarah Chen",
-    role: "CEO",
-    company: "Nexus Finance",
+    name: "Sakshi Rai",
+    role: "Growth Lead",
+    company: "USHER",
     content:
-      "USHER didn't just build us an app; they engineered a competitive advantage. Their technical prowess is unmatched.",
-    avatar: "/images/avatar1.png",
+      "USHER didn't just build us an app; they engineered a competitive advantage. Their technical prowess is unmatched. \n\nTheir team is deeply committed to delivering excellence, and it shows in every detail. They consistently strive to provide the best experience for users and never compromise on quality.",
+    avatar: "/images/growth.webp",
+    contentLight: "",
+    contentDark: "",
   },
   {
     id: "t2",
-    name: "Marcus Thorne",
-    role: "Lead Engineer",
-    company: "Aethos AI",
+    name: "Ebenzer Rao",
+    role: "Software Developer",
+    company: "USHER",
     content:
-      "Working with USHER felt like having an elite strike team embedded in our company. They execute with terrifying precision.",
-    avatar: "/images/avatar2.png",
+      "Working with USHER felt like having an elite strike team embedded in our company. They execute with precision. \n\nWhat stands out most is their promise to always put users first. The team collaborates seamlessly and is driven to build impactful solutions.",
+    avatar: "/images/swd.webp",
+    contentLight: "",
+    contentDark: "",
   },
   {
     id: "t3",
-    name: "Elena Rodriguez",
-    role: "Creative Director",
-    company: "Nova Commerce",
+    name: "Harsh Srivastava",
+    role: "App Developer",
+    company: "USHER",
     content:
-      "They perfectly balance raw engineering power with an incredible eye for design. Our new platform is a work of art.",
-    avatar: "/images/avatar3.png",
+      "We perfectly balance engineering power with an incredible eye for design and app development. Our company sets a high standard in development. \n\nWe are committed to continuous improvement and delivering the best possible user experience.",
+    avatar: "/images/appdev.webp",
+    contentLight: "",
+    contentDark: "",
+  },
+  {
+    id: "t4",
+    name: "Raunak Kesarwani",
+    role: "AI & Data Scientist Enthusiast",
+    company: "USHER",
+    content:
+      "At USHER, we leverage data and AI to create smarter, more efficient solutions. \n\nOur promise is to continuously innovate and use technology responsibly to deliver meaningful value to our users.",
+    avatar: "/images/ai-ds.webp",
+    contentLight: "",
+    contentDark: "",
+  },
+  {
+    id: "t5",
+    name: "Manhar",
+    role: "Graphics & UI/UX Designer",
+    company: "USHER",
+    content:
+      "Design at USHER is not just about looks—it's about creating seamless and intuitive user experiences. \n\nWe are dedicated to crafting interfaces that are both beautiful and highly functional, ensuring users enjoy every interaction.",
+    avatar: "/images/UiUx.webp",
+    contentLight: "",
+    contentDark: "",
+  },
+  {
+    id: "t6",
+    name: "Utkarsh Tiwari",
+    role: "Devops Developer",
+    company: "USHER",
+    content:
+      "We build scalable and reliable systems that power great products. \n\nOur team is committed to writing clean, efficient code and delivering solutions that users can trust on every day.",
+    contentLight:
+      "We build scalable and reliable systems that power great products. \n\nOur team is committed to writing clean, efficient code and delivering solutions that users can rely on every day.",
+    contentDark:
+      "Kubernetes clusters with auto-scaling, 99.99% uptime. Terraform IaC for reproducible environments.",
+    avatar: "/images/devops.webp",
   },
 ];

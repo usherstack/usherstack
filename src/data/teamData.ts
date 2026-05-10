@@ -18,7 +18,7 @@ export const teamMembers: TeamMember[] = [
     role: "SWD",
     roleFullName: "Software & Web Development",
     bio: "Leads scalable web and software development with a focus on performance, clean architecture, and user-centric solutions.",
-    image: "/images/swd.png",
+    image: "/images/swd.webp",
     social: {
       linkedin: "https://linkedin.com",
       github: "https://github.com",
@@ -30,7 +30,7 @@ export const teamMembers: TeamMember[] = [
     role: "GROWTH",
     roleFullName: "Marketing & Scaling",
     bio: "Drives marketing strategies, user acquisition, and business growth using data-driven approaches.",
-    image: "/images/growth.png",
+    image: "/images/growth.webp",
     social: {
       linkedin: "https://linkedin.com",
       github: "https://github.com",
@@ -42,7 +42,7 @@ export const teamMembers: TeamMember[] = [
     role: "DEVOPS",
     roleFullName: "Cloud & Infrastructure",
     bio: "Handles cloud systems, CI/CD pipelines, and infrastructure automation to ensure scalability and reliability.",
-    image: "/images/devops.png",
+    image: "/images/devops.webp",
     social: {
       linkedin: "https://linkedin.com",
       github: "https://github.com",
@@ -54,7 +54,7 @@ export const teamMembers: TeamMember[] = [
     role: "APP DEV",
     roleFullName: "Application Development",
     bio: "Builds high-performance mobile and cross-platform applications with seamless UI and strong backend integration.",
-    image: "/images/appdev.png",
+    image: "/images/appdev.webp",
     social: {
       linkedin: "https://linkedin.com",
       github: "https://github.com",
@@ -66,7 +66,7 @@ export const teamMembers: TeamMember[] = [
     role: "AI/DS",
     roleFullName: "AI & Data Solutions",
     bio: "Develops AI models and data-driven systems to automate processes and generate actionable insights.",
-    image: "/images/ai-ds.jpeg",
+    image: "/images/ai-ds.webp",
     social: {
       linkedin: "https://linkedin.com",
       github: "https://github.com",
@@ -78,7 +78,7 @@ export const teamMembers: TeamMember[] = [
     role: "UI/UX",
     roleFullName: "Design & Creative",
     bio: "Designs intuitive interfaces and engaging user experiences with strong visual identity and usability principles.",
-    image: "/images/UiUx.png",
+    image: "/images/UiUx.webp",
     social: {
       linkedin: "https://linkedin.com",
       github: "https://github.com",

@@ -1,8 +1,13 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { TeamCard } from "@/components/features/TeamCard";
 import { teamMembers } from "@/data/teamData";
-import { TestimonialsSlider } from "@/components/animations/TestimonialsSlider";
+const TestimonialsSlider = React.lazy(() =>
+  import("@/components/animations/TestimonialsSlider").then((module) => ({
+    default: module.TestimonialsSlider,
+  })),
+);
+
 import { testimonials } from "@/data/data";
 
 export const Team: React.FC = () => {
@@ -77,7 +82,15 @@ export const Team: React.FC = () => {
 
         {/* Testimonials Section */}
         <div className="mt-24 md:mt-32">
-          <TestimonialsSlider testimonials={testimonials} />
+          <Suspense
+            fallback={
+              <div className="h-64 flex items-center justify-center">
+                <span className="text-slate-400">Loading testimonials...</span>
+              </div>
+            }
+          >
+            <TestimonialsSlider testimonials={testimonials} />
+          </Suspense>
         </div>
 
         {/* CTA Section */}
@@ -102,3 +115,4 @@ export const Team: React.FC = () => {
     </section>
   );
 };
+export default Team;

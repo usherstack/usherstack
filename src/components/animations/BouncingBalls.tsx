@@ -27,7 +27,7 @@ const COLORS = [
 export function BouncingBalls() {
   const containerRef = useRef<HTMLDivElement>(null);
   const ballsRef = useRef<HTMLDivElement[]>([]);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
   const mousePosition = useRef({ x: 0, y: 0 });
   const isMouseDown = useRef(false);
 
@@ -102,13 +102,25 @@ export function BouncingBalls() {
         newY[i] += velY[i];
 
         // Bounce off walls
-        if (newX[i] <= balls[i].size / 2 || newX[i] >= bounds.width - balls[i].size / 2) {
+        if (
+          newX[i] <= balls[i].size / 2 ||
+          newX[i] >= bounds.width - balls[i].size / 2
+        ) {
           velX[i] *= -1;
-          newX[i] = Math.max(balls[i].size / 2, Math.min(bounds.width - balls[i].size / 2, newX[i]));
+          newX[i] = Math.max(
+            balls[i].size / 2,
+            Math.min(bounds.width - balls[i].size / 2, newX[i]),
+          );
         }
-        if (newY[i] <= balls[i].size / 2 || newY[i] >= bounds.height - balls[i].size / 2) {
+        if (
+          newY[i] <= balls[i].size / 2 ||
+          newY[i] >= bounds.height - balls[i].size / 2
+        ) {
           velY[i] *= -1;
-          newY[i] = Math.max(balls[i].size / 2, Math.min(bounds.height - balls[i].size / 2, newY[i]));
+          newY[i] = Math.max(
+            balls[i].size / 2,
+            Math.min(bounds.height - balls[i].size / 2, newY[i]),
+          );
         }
 
         // Mouse repulsion
@@ -131,11 +143,13 @@ export function BouncingBalls() {
 
         // Apply to DOM
         if (ballsRef.current[i]) {
-          ballsRef.current[i].style.transform = `translate(${newX[i]}px, ${newY[i]}px)`;
+          ballsRef.current[i].style.transform =
+            `translate(${newX[i]}px, ${newY[i]}px)`;
           // Scale based on velocity
           const speed = Math.sqrt(velX[i] * velX[i] + velY[i] * velY[i]);
           const scale = 1 + speed * 0.03;
-          ballsRef.current[i].style.transform = `translate(${newX[i]}px, ${newY[i]}px) scale(${Math.min(scale, 1.5)})`;
+          ballsRef.current[i].style.transform =
+            `translate(${newX[i]}px, ${newY[i]}px) scale(${Math.min(scale, 1.5)})`;
         }
       }
 
@@ -198,9 +212,10 @@ export function BouncingBalls() {
         />
       ))}
 
-      <style jsx global>{`
+      <style>{`
         @keyframes sparkFloat {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0px) scale(1);
             opacity: 0.15;
           }

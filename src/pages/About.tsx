@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { motion } from "framer-motion";
 import { Target, Users, Zap, Award } from "lucide-react";
+import AnimatedBall from "@/components/animations/Animatedboll";
 
 const Team = lazy(() => import("@/components/features/Team"));
 
@@ -31,6 +32,7 @@ export default function About() {
 
   return (
     <PageTransition>
+      <AnimatedBall />
       {/* Hero Section */}
       <div className="pt-32 pb-20 relative min-h-[50vh] flex items-center overflow-hidden">
         <div className="container mx-auto px-4 md:px-8 relative z-10">
@@ -38,7 +40,7 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl"
+            className="max-w-l"
           >
             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground mb-6">
               We are <span className="text-primary">engineers.</span>
@@ -144,10 +146,10 @@ export default function About() {
         </div>
       </section>
 
-       {/* Team Section */}
-       <Suspense fallback={<div className="min-h-[400px]">Loading team...</div>}>
-         <Team />
-       </Suspense>
+      {/* Team Section */}
+      <Suspense fallback={<div className="min-h-[400px]">Loading team...</div>}>
+        <Team />
+      </Suspense>
     </PageTransition>
   );
 }

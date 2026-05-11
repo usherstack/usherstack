@@ -35,25 +35,24 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-foreground mb-6 leading-[1.1]"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-foreground mb-6 leading-[1.1] text-center items-center justify-center]"
           >
-            We build
-            <br />
+            We build <br />
             <Suspense
               fallback={<span className="text-gradient">Loading...</span>}
             >
               <TypingText
                 phrases={[
-                  "websites.",
-                  "applications.",
-                  "brand identities.",
-                  "AI platforms.",
-                  "the future.",
+                  "websites",
+                  "applications",
+                  "brand identities",
+                  "AI platforms",
+                  "the future",
                 ]}
                 typingSpeed={80}
                 deletingSpeed={40}
                 pauseTime={2000}
-                className="text-gradient"
+                className="text-gradient bg-clip-text text-transparent"
               />
             </Suspense>
           </motion.h1>

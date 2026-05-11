@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import React, { useEffect, useMemo, useRef } from "react";
 import { throttle } from "lodash";
-import MagneticButton from "./MagneticButton";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface Bubble {
   id: number;
@@ -13,13 +12,13 @@ interface Bubble {
   color: string;
 }
 
-export function AnimatedGradient() {
+export function AnimatedBall() {
   const isMobile = useIsMobile();
 
   const bubblesRef = useRef<HTMLDivElement[]>([]);
   const mousePosition = useRef({ x: 0, y: 0 });
 
-  // Track mouse
+  // Mouse Tracking
   const handleMouseMove = throttle((e: MouseEvent) => {
     mousePosition.current = {
       x: e.clientX,
@@ -38,7 +37,7 @@ export function AnimatedGradient() {
     };
   }, [isMobile]);
 
-  // Bubble interaction animation
+  // Cursor interaction
   useEffect(() => {
     if (isMobile) return;
 
@@ -58,12 +57,12 @@ export function AnimatedGradient() {
 
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        const radius = 100;
+        const radius = 50;
 
         if (distance < radius) {
           const angle = Math.atan2(dy, dx);
 
-          const force = (1 - distance / radius) * 10;
+          const force = (1 - distance / radius) * 50;
 
           const moveX = -Math.cos(angle) * force;
           const moveY = -Math.sin(angle) * force;
@@ -72,7 +71,7 @@ export function AnimatedGradient() {
             translate(${moveX}px, ${moveY}px)
           `;
         } else {
-          bubble.style.transform = `translate(0px, 0px)`;
+          bubble.style.transform = `translate(0px,0px)`;
         }
       });
 
@@ -84,34 +83,42 @@ export function AnimatedGradient() {
     return () => cancelAnimationFrame(animationId);
   }, [isMobile]);
 
-  const bubbles: Bubble[] = Array.from({ length: 18 }, (_, i) => {
-    const colors = [
-      "bg-primary/40",
-      "bg-blue-400/40",
-      "bg-cyan-400/40",
-      "bg-purple-400/40",
-      "bg-pink-400/40",
-    ];
+  // Multiple balls covering whole screen
+  const bubbles: Bubble[] = useMemo(
+    () =>
+      Array.from({ length: 90 }, (_, i) => {
+        const colors = [
+          "bg-green-400/50",
+          "bg-blue-400/50",
+          "bg-yellow-400/50",
+          "bg-red-400/50",
+          "bg-orange-400/50",
+          "bg-cyan-400/50",
+          "bg-purple-400/50",
+          "bg-pink-400/50",
+        ];
 
-    return {
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 90,
-      size: Math.random() * 120 + 60,
-      duration: Math.random() * 10 + 10,
-      delay: Math.random() * 5,
-      color: colors[i % colors.length],
-    };
-  });
+        return {
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 50 + 20 + 10,
+          duration: Math.random() * 6 + 4 + 2,
+          delay: Math.random() * 3,
+          color: colors[i % colors.length],
+        };
+      }),
+    [],
+  );
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-      {/* Main Background Orbs */}
+      {/* Large Background Glow */}
       <div className="orb orb-1" />
       <div className="orb orb-2" />
       <div className="orb orb-3" />
 
-      {/* Floating Bubbles */}
+      {/* Balls */}
       {bubbles.map((bubble, index) => (
         <div
           key={bubble.id}
@@ -121,7 +128,7 @@ export function AnimatedGradient() {
           className={`
             absolute
             rounded-full
-            blur-md
+            blur-l
             mix-blend-screen
             ${bubble.color}
           `}
@@ -133,35 +140,56 @@ export function AnimatedGradient() {
             marginLeft: `-${bubble.size / 2}px`,
             marginTop: `-${bubble.size / 2}px`,
             animation: `
-              float ${bubble.duration}s 
-              ease-in-out 
-              infinite
+              bounceMove ${bubble.duration}s
+              ease-in-out
+              infinite alternate
             `,
             animationDelay: `${bubble.delay}s`,
             willChange: "transform",
+            transition: "transform 0.12s linear",
           }}
         />
       ))}
 
-      {/* Global Styles */}
       <style>{`
-        @keyframes float {
-          0%,
-          100% {
+        @keyframes bounceMove {
+          0% {
+            transform: translate(0px, 0px) scale(1);
             opacity: 0.5;
           }
 
-          50% {
+          20% {
+            transform: translate(30px, -40px) scale(1.15);
             opacity: 0.9;
+          }
+
+          40% {
+            transform: translate(-40px, 50px) scale(0.9);
+            opacity: 0.7;
+          }
+
+          60% {
+            transform: translate(45px, 70px) scale(1.1);
+            opacity: 1;
+          }
+
+          80% {
+            transform: translate(-35px, -30px) scale(0.95);
+            opacity: 0.8;
+          }
+
+          100% {
+            transform: translate(20px, 40px) scale(1);
+            opacity: 0.6;
           }
         }
 
         .orb {
           position: absolute;
           border-radius: 9999px;
-          filter: blur(120px);
+          filter: blur(80px);
           mix-blend-mode: screen;
-          animation: pulse 10s ease-in-out infinite alternate;
+          animation: orbFloat 18s ease-in-out infinite alternate;
         }
 
         .orb-1 {
@@ -169,7 +197,7 @@ export function AnimatedGradient() {
           height: 700px;
           top: -250px;
           left: -200px;
-          background: rgba(99, 102, 241, 0.35);
+          background: rgba(59, 130, 246, 0.25);
         }
 
         .orb-2 {
@@ -177,7 +205,7 @@ export function AnimatedGradient() {
           height: 600px;
           top: 10%;
           right: -200px;
-          background: rgba(168, 85, 247, 0.3);
+          background: rgba(168, 85, 247, 0.25);
           animation-delay: 2s;
         }
 
@@ -186,21 +214,26 @@ export function AnimatedGradient() {
           height: 800px;
           bottom: -300px;
           left: 20%;
-          background: rgba(6, 182, 212, 0.25);
+          background: rgba(6, 182, 212, 0.2);
           animation-delay: 4s;
         }
 
-        @keyframes pulse {
-          from {
-            transform: scale(0.95);
+        @keyframes orbFloat {
+          0% {
+            transform: scale(1) translate(0px, 0px);
           }
 
-          to {
-            transform: scale(1.05);
+          50% {
+            transform: scale(1.1) translate(60px, -40px);
+          }
+
+          100% {
+            transform: scale(0.95) translate(-50px, 50px);
           }
         }
       `}</style>
     </div>
   );
 }
-export default AnimatedGradient;
+
+export default AnimatedBall;

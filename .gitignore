@@ -64,3 +64,9 @@ LICENSE
 PRODUCTION_REFACTORING.md
 RESTRUCTURING_SUMMARY.md
 TODO.md
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example

@@ -2,11 +2,13 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 export default defineConfig(({ mode }) => {
   const isDev = mode === "development";
 
   return {
-    plugins: [react()],
+    plugins: [react(), cloudflare()],
 
     resolve: {
       alias: {
